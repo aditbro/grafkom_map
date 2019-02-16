@@ -1,0 +1,48 @@
+#include "Color.h"
+#include <stdio.h>
+
+Color color(char r, char g, char b){
+    Color c;
+    c.r = r;
+    c.g = g;
+    c.b = b;
+
+    return c;
+}
+
+void Color_print(Color col){
+    printf("(%d, %d, %d)", col.r, col.g, col.b);
+}
+
+int Color_compare(Color* c1, Color* c2){
+    return(c1->r == c2->r && c1->g == c2->g && c1->b == c2->b);
+}
+
+//color constants
+Color Color_red(){
+    return color(255,0,0);
+}
+
+Color Color_green(){
+    return color(0,255,0);
+}
+
+Color Color_blue(){
+    return color(0,0,255);
+}
+
+Color Color_black(){
+    return color(0,0,0);
+}
+
+Color Color_white(){
+    return color(255,255,255);
+}
+
+int is_color_same(Color c1, Color c2){
+    if(c1.r == c2.r && c1.g == c2.g && c1.b == c2.b){
+        return 1;
+    }else{
+        return 0;
+    }
+}

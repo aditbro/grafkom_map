@@ -1,0 +1,1 @@
+gcc Color.c -o exe
