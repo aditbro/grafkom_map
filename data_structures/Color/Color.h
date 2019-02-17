@@ -16,6 +16,9 @@ void Color_print(Color col);
 //compare two colors for equality
 int Color_compare(Color* c1, Color* c2);
 
+//get the average color of given pixels
+Color Color_get_average(Color* colors, int num_color);
+
 //various predefined color
 Color Color_red();
 Color Color_green();

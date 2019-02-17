@@ -91,7 +91,7 @@ void Shape_drawTo(Shape* sh, Buffer* buff, Point init){
     for(int i = 0; i < sh->shape_buffer.height; i++){
         for(int j = 0; j < sh->shape_buffer.width; j++){
             c = Buffer_getColorAt(&sh->shape_buffer,i,j);
-            Buffer_fillAt(buff,i + init.i ,j + init.j, &c);
+            Buffer_drawAt(buff,i + init.i ,j + init.j, &c);
         }
     }
 }
