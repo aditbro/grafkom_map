@@ -77,40 +77,14 @@ int main(){
                 jSelector -= 10;
             }else if(ch == 'd' && jSelector <= (250 - (200 / scaleSelector) - 10)){
                 jSelector += 10;
-            }else if(ch == 'q' && scaleSelector <= 4){
-                scaleS            if(iSelector > (450 - (300 / scaleSelector)- 10)){
-                iSelector = (450 - (300 / scaleSelector)- 10);
-            }
-            if(jSelector > (250 - (200 / scaleSelector) - 10)){
-                jSelector = (250 - (200 / scaleSelector) - 10);
-            }
-                if(sca            if(iSelector > (450 - (300 / scaleSelector)- 10)){
-                iSelector = (450 - (300 / scaleSelector)- 10);
-            }
-            if(jSelector > (250 - (200 / scaleSelector) - 10)){
-                jSelector = (250 - (200 / scaleSelector) - 10);
-            }
-                    se            if(iSelector > (450 - (300 / scaleSelector)- 10)){
-                iSelector = (450 - (300 / scaleSelector)- 10);
-            }
-            if(jSelector > (250 - (200 / scaleSelector) - 10)){
-                jSelector = (250 - (200 / scaleSelector) - 10);
-            }
-                    se            if(iSelector > (450 - (300 / scaleSelector)- 10)){
-                iSelector = (450 - (300 / scaleSelector)- 10);
-            }
-            if(jSelector > (250 - (200 / scaleSelector) - 10)){
-                jSelector = (250 - (200 / scaleSelector) - 10);
-            }
-                }else{            if(iSelector > (450 - (300 / scaleSelector)- 10)){
-                iSelector = (450 - (300 / scaleSelector)- 10);
-            }
-            if(jSelector > (250 - (200 / scaleSelector) - 10)){
-                jSelector = (250 - (200 / scaleSelector) - 10);
-            }
+            }else if(ch == 'q' && scaleSelector <= 2){
+                scaleSelector *= 2;
+                if(scaleSelector == 4){
                     selector1->is_appearing = 0;
                     selector2->is_appearing = 1;
-
+                }else{
+                    selector1->is_appearing = 1;
+                    selector2->is_appearing = 0;
                 }
             }else if(ch == 'e' && scaleSelector >= 2){
                 scaleSelector /= 2;
