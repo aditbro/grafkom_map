@@ -21,7 +21,7 @@ Color get_average_color(Buffer* buff, int init_i, int init_j, int scale) {
 Buffer down_scale(Buffer* buff, int scale) {
     int new_width = buff->width/scale;
     int new_height = buff->height/scale;
-    Buffer b = create_buffer(buff->width, buff->height);
+    Buffer b = create_buffer(new_width, new_height);
 
     Color c;
 

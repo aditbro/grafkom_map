@@ -7,6 +7,7 @@
 Shape shape(Line* lines, int num_line, Color* col){
     Shape sh;
     sh.shape_color = *col;
+    sh.line_color = Color_white();
     sh.line_number = num_line;
     sh.lines = (Line*)malloc(num_line*sizeof(Line));
     for(int i = 0; i < num_line; i++){
@@ -101,7 +102,7 @@ void Shape_drawTo(Shape* sh, Buffer* buff, Point init){
 void Shape_draw_wireframe(Shape *sh){
     Point init = point(0,0);
     for (int i = 0;i < sh->line_number; i++){
-        Line_draw(&(sh->lines[i]), &(sh->shape_buffer), &(sh->shape_color), &init);
+        Line_draw(&(sh->lines[i]), &(sh->shape_buffer), &(sh->line_color), &init);
     }
 }
 
@@ -383,16 +384,26 @@ Shape Shape_bullet(int scale, Color c) {
 
 Shape Shape_rectangle(int scale, Color c) {
     Line* lines = (Line*)malloc(4*sizeof(Line));
-    lines[0] = line(point(0, 0), point(0, 3));
-    lines[1] = line(point(0, 3), point(6, 3));
-    lines[2] = line(point(6, 3), point(6, 0));
-    lines[3] = line(point(6, 0), point(0, 0));
+    lines[0] = line(point(0, 0), point(0, 2));
+    lines[1] = line(point(0, 2), point(4, 2));
+    lines[2] = line(point(4, 2), point(4, 0));
+    lines[3] = line(point(2, 0), point(0, 0));
 
     for(int k = 0; k < 4; k++){
         Point p1 = point(lines[k].p1.i * scale, lines[k].p1.j * scale);
         Point p2 = point(lines[k].p2.i * scale, lines[k].p2.j * scale);
         lines[k] = line(p1, p2);
     }
+
+    return shape(lines, 4, &c);
+}
+
+Shape Shape_free_rectangle(int width, int height, Color c){
+    Line* lines = (Line*)malloc(4*sizeof(Line));
+    lines[0] = line(point(0, 0), point(0, width));
+    lines[1] = line(point(0, width), point(height, width));
+    lines[2] = line(point(height, width), point(height, 0));
+    lines[3] = line(point(height, 0), point(0, 0));
 
     return shape(lines, 4, &c);
 }

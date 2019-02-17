@@ -10,6 +10,7 @@ typedef struct {
     Line* lines;
     int line_number;
     Color shape_color;
+    Color line_color;
     Buffer shape_buffer;
 
     int leftmost_point;
@@ -92,4 +93,5 @@ Shape Shape_plane(int scale, Color c);
 Shape Shape_cannon(int scale, Color c);
 Shape Shape_bullet(int scale, Color c);
 Shape Shape_rectangle(int scale, Color c);
+Shape Shape_free_rectangle(int width, int height, Color c);
 #endif

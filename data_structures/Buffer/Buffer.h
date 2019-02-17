@@ -31,6 +31,9 @@ Color Buffer_getColorAt(Buffer* buff, int i, int j);
 //copy the second buffer into the first one given the destination buffer can contain the source
 int Buffer_copy(Buffer* dest, Buffer* src, Point init);
 
+//same like copy but skip black color
+int Buffer_draw(Buffer* dest, Buffer* src, Point init);
+
 /*
  *crop a buffer then return the cropped buffer
  *example : 

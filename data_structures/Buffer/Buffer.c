@@ -1,5 +1,7 @@
 #include "Buffer.h"
 #include <stdlib.h>
+#include <stdio.h>
+
 //buffer constructor
 Buffer buffer(char* buff, int width, int height){
     Buffer b;
@@ -68,6 +70,7 @@ Color Buffer_getColorAt(Buffer* buff, int i, int j){
 //copy the second buffer into the first one given the destination buffer can contain the source
 int Buffer_copy(Buffer* dest, Buffer* src, Point init) {
     if(dest->width < src->width+init.j || dest->height < src->height+init.i){
+        printf("buffer copy rejected src dim %d %d, dest dim %d %d \n",src->width+init.j, src->height+init.i, dest->width, dest->height);
         return 1;
     }
 
@@ -77,6 +80,27 @@ int Buffer_copy(Buffer* dest, Buffer* src, Point init) {
         for(int j = 0; j < src->width; j++){
             c = Buffer_getColorAt(src, i, j);
             Buffer_fillAt(dest, i+init.i, j+init.j, &c);
+        }
+    }
+
+    return 0;
+}
+
+int Buffer_draw(Buffer* dest, Buffer* src, Point init) {
+    if(dest->width < src->width+init.j || dest->height < src->height+init.i){
+        printf("buffer draw rejected src dim %d %d, dest dim %d %d \n",src->width+init.j, src->height+init.i, dest->width, dest->height);
+        return 1;
+    }
+
+    Color b = Color_black();
+    Color c;
+
+    for(int i = 0; i < src->height; i++){
+        for(int j = 0; j < src->width; j++){
+            c = Buffer_getColorAt(src, i, j);
+            if(!Color_compare(&c, &b)){
+                Buffer_fillAt(dest, i+init.i, j+init.j, &c);
+            }
         }
     }
 
@@ -98,7 +122,7 @@ Buffer Buffer_get_crop(Buffer* buff, Point top_left, Point bot_right) {
     int highest = top_left.i;
     int lowest = bot_right.i;
     Buffer ret_buff = create_buffer(rightmost-leftmost+1, lowest-highest+1);
-
+    
     for(int i = highest; i <= lowest; i++){
         for(int j = leftmost; j <= rightmost; j++){
             c = Buffer_getColorAt(buff, i, j);

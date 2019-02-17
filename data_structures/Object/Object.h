@@ -6,16 +6,25 @@
 
 typedef struct {
     Point location;
-    Shape* s;
-    int num_shape;
+    Buffer** b;
+    int num_buffer;
     int id;
-    void (*actionFunction)(char*);
+    int is_appearing;
 } Object;
 
-//object constructor
-Object object(int id, Shape* s, int num_shape, Point loc);
+extern int num_object;
+extern Object** object_array;
 
-//add action function
-void Object_add_action(Object* ob, void (*f)(char*));
+//draw all object to a buffer
+void Object_draw_all(Buffer* buff);
+
+//object constructor
+Object* object(Point loc);
+
+//add more shape to objcet
+void Object_add_buffer(Object* ob, Buffer* buff);
+
+//draw object to a buffer
+void Object_draw(Object* ob, Buffer* buff);
 
 #endif
