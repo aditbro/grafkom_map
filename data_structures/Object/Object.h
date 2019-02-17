@@ -27,4 +27,5 @@ void Object_add_buffer(Object* ob, Buffer* buff);
 //draw object to a buffer
 void Object_draw(Object* ob, Buffer* buff);
 
+void Object_update_zoom_position(int iSelector, int jSelector, Buffer *map_img);
 #endif

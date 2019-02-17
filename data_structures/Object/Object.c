@@ -45,3 +45,11 @@ void Object_draw_all(Buffer* buff) {
         Object_draw(object_array[i], buff);
     }
 }
+
+void Object_update_zoom_position(int iSelector, int jSelector, Buffer *map_img){
+    object_array[2]->location.i = iSelector;
+    object_array[2]->location.j = jSelector;
+    object_array[3]->location.i = iSelector;
+    object_array[3]->location.j = jSelector;
+    object_array[1]->b[0] = map_img;
+}

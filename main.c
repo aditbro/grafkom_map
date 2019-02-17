@@ -30,12 +30,18 @@ Buffer get_image_buffer(char* dir, int width, int height){
 
 int main(){
     int SCREEN_SIZE = screen_width * screen_height * 4;
+    int iSelector, jSelector,scaleSelector;
+
+    iSelector = 150;
+    jSelector = 50;
+    scaleSelector = 2;
+
     Buffer tb = create_buffer(screen_width, screen_height);
     Buffer fb = get_image_buffer("/dev/fb0", screen_width, screen_height);
     Buffer img = get_image_buffer("file.pmp", 1600, 2400);
     Buffer thumbnail_img = down_scale(&img, 8);
-    Buffer map_img = down_scale(&img, 2);
-    map_img = Buffer_get_crop(&map_img, point(0,0), point(600,400));
+    Buffer map_img = down_scale(&img, 4 / scaleSelector);
+    map_img = Buffer_get_crop(&map_img, point(iSelector - 150 ,jSelector - 50), point((iSelector - 150) +  600,(jSelector - 50) + 400));
     Shape rectangle1 = Shape_free_rectangle(100, 150, Color_black());
     Shape rectangle2 = Shape_free_rectangle(50, 75, Color_black());
 
@@ -47,14 +53,89 @@ int main(){
     Object* map = object(point(0,400));
     Object_add_buffer(map, &map_img);
 
-    Object* selector1 = object(point(200,50));
+
+    Object* selector1 = object(point(iSelector,jSelector));
     Object_add_buffer(selector1, &rectangle1.shape_buffer);
 
-    Object* selector2 = object(point(200,50));
+    Object* selector2 = object(point(iSelector,jSelector));
     Object_add_buffer(selector2, &rectangle2.shape_buffer);
     selector2->is_appearing = 0;
+    char ch;
+    while(1){
+        memset(tb.buffer, 0, SCREEN_SIZE);
+        Object_draw_all(&tb);
+        memcpy((fb.buffer), (tb.buffer), SCREEN_SIZE);
+        usleep(10000);
+        if (kbhit())
+        {
+            ch = getchar();
+            if(ch == 'w' && iSelector >= 160){
+                iSelector -= 10;
+            }else if(ch == 's' && iSelector <= (450 - (300 / scaleSelector)- 10)){
+                iSelector += 10;
+            }else if(ch == 'a' && jSelector >= 60){
+                jSelector -= 10;
+            }else if(ch == 'd' && jSelector <= (250 - (200 / scaleSelector) - 10)){
+                jSelector += 10;
+            }else if(ch == 'q' && scaleSelector <= 4){
+                scaleS            if(iSelector > (450 - (300 / scaleSelector)- 10)){
+                iSelector = (450 - (300 / scaleSelector)- 10);
+            }
+            if(jSelector > (250 - (200 / scaleSelector) - 10)){
+                jSelector = (250 - (200 / scaleSelector) - 10);
+            }
+                if(sca            if(iSelector > (450 - (300 / scaleSelector)- 10)){
+                iSelector = (450 - (300 / scaleSelector)- 10);
+            }
+            if(jSelector > (250 - (200 / scaleSelector) - 10)){
+                jSelector = (250 - (200 / scaleSelector) - 10);
+            }
+                    se            if(iSelector > (450 - (300 / scaleSelector)- 10)){
+                iSelector = (450 - (300 / scaleSelector)- 10);
+            }
+            if(jSelector > (250 - (200 / scaleSelector) - 10)){
+                jSelector = (250 - (200 / scaleSelector) - 10);
+            }
+                    se            if(iSelector > (450 - (300 / scaleSelector)- 10)){
+                iSelector = (450 - (300 / scaleSelector)- 10);
+            }
+            if(jSelector > (250 - (200 / scaleSelector) - 10)){
+                jSelector = (250 - (200 / scaleSelector) - 10);
+            }
+                }else{            if(iSelector > (450 - (300 / scaleSelector)- 10)){
+                iSelector = (450 - (300 / scaleSelector)- 10);
+            }
+            if(jSelector > (250 - (200 / scaleSelector) - 10)){
+                jSelector = (250 - (200 / scaleSelector) - 10);
+            }
+                    selector1->is_appearing = 0;
+                    selector2->is_appearing = 1;
 
-    Object_draw_all(&fb);
+                }
+            }else if(ch == 'e' && scaleSelector >= 2){
+                scaleSelector /= 2;
+                if(scaleSelector == 1){
+                    selector1->is_appearing = 0;
+                    selector2->is_appearing = 0;
+                }else{
+                    selector1->is_appearing = 1;
+                    selector2->is_appearing = 0;
+                }
+            }
+            if(iSelector > (450 - (300 / scaleSelector)- 10)){
+                iSelector = (450 - (300 / scaleSelector));
+            }
+            if(jSelector > (250 - (200 / scaleSelector) - 10)){
+                jSelector = (250 - (200 / scaleSelector));
+            }
+            // printf("%d %d\n",iSelector,jSelector);
+            map_img = down_scale(&img, 4 / scaleSelector);
+            map_img = Buffer_get_crop(&map_img, point((iSelector - 150) * scaleSelector * 2,(jSelector - 50) * scaleSelector * 2), point((iSelector - 150) * scaleSelector * 2 +  600,(jSelector - 50) * scaleSelector * 2 + 400));
+            Object_update_zoom_position(iSelector,jSelector, &map_img);
+        }
+
+    }
+    
 
     getchar();
 }
