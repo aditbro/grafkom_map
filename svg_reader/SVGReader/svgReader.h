@@ -14,7 +14,7 @@
  * 
  * Extracts the "d" attribute in a node, if it is a "path".
  */
-static char*
+char*
 getPathData(xmlTextReaderPtr reader);
 
 /**
@@ -23,7 +23,7 @@ getPathData(xmlTextReaderPtr reader);
  *
  * Parses SVG and returns an array of string that represents unprocessed path data
  */
-static char**
+char**
 streamFile(const char *filename);
 
 #endif
