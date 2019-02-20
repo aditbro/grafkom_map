@@ -231,6 +231,7 @@ char** splitPoint (char* value) {
     return result;
 }
 
+// C String initialization
 char *initializeString(int size) {
     char *result = (char *)malloc (size * sizeof(char));
     for (int i = 0 ; i < size ; i++) {
