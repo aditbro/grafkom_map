@@ -1,14 +1,15 @@
-IDIR = libxml2/include
-LDIR = libxml2/lib
-DIR = SVG_PathData_Parser
+IDIR = /usr/include/libxml2/
+IDIR2 = ../data_structures
+LDIR = /usr/
+DIRSVG = SVGReader
+DIRPROCESS = PathDataProcessing
 CC = gcc
-CFLAGS =-I$(IDIR) -L$(LDIR)
-OBJ = reader.exe
-TARGET = $(DIR)/reader1.c
-LIB = -lxml2 -lm -l../bin/libxml2-2
+CFLAGS =-I$(IDIR) -I$(IDIR2) -I$(DIRSVG) -I$(DIRPROCESS) -L$(LDIR)
+COMPILEDIR = main.c $(DIRSVG)/svgReader.c $(DIRPROCESS)/pathToLines.c $(IDIR2)/Line/Line.c $(IDIR2)/Shape/Shape.c $(IDIR2)/Color/Color.c $(IDIR2)/Point/Point.c $(IDIR2)/Buffer/Buffer.c
+LIB = -lxml2 -lm
 
-all: 
-	$(CC) -o $(OBJ) $(TARGET) $(CFLAGS) $(LIB)
+all:
+	$(CC) -Wall -g -o reader $(COMPILEDIR) $(CFLAGS) $(LIB)
 
 clean: 
 	rm $(OBJ)
