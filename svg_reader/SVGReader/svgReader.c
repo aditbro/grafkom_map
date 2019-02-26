@@ -66,8 +66,6 @@ streamFile(const char *filename, char ** outLayerNames) {
             char* pathData = getPathData(reader);
             if(getLayerName(reader) != NULL) {
                 if (nLayer == 0) {
-                    //give a gap, so we know when the layer changes.
-                    result[nShapes++] = NULL;
                     outLayerNames[nLayer++] = getLayerName(reader);
                 } else
                 //if outLayernames != getLayerName
