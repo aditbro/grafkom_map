@@ -34,7 +34,7 @@ int main(){
     char** itbMap = streamFile("peta_itb.svg",layerNameList);
     printf("finished reading!");
     for(int i = 0; i < 143 ; i++) {  
-        if (itbMap[i] != NULL) 
+        if (itbMap[i] != NULL) //NULL means a change in layer
         listOfShapes[i] = getShapeFromInstructions(itbMap[i], 3);
     }
     for(int i = 0; i < 143 ; i++) {
