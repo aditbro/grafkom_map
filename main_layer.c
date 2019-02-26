@@ -37,7 +37,6 @@ void renderLayer(Buffer* tb, Shape* layer, int size) {
 
 int main(){
     int SCREEN_SIZE = screen_width * screen_height * 4;
-    int iSelector, jSelector,scaleSelector;
 
     Buffer tb = create_buffer(screen_width, screen_height);
     Buffer fb = get_image_buffer("/dev/fb0", screen_width, screen_height);
@@ -51,9 +50,6 @@ int main(){
     Shape* layer5 = (Shape*) malloc(100*sizeof(Shape));
     Shape* layer6 = (Shape*) malloc(100*sizeof(Shape));
 
-    // TODO: call svg reader here. streamFile returns an array of string
-    // then, call getShapeFromInstructions.
-    // For more information, look at svg_reader/exampleMain.c
     
     int layer1_size = 0;
     int layer2_size = 0;
