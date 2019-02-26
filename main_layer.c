@@ -9,6 +9,7 @@
 #include <errno.h>
 #include "kbhit.c"
 
+// DO NOT FORGET TO CHANGE THIS!
 int screen_width = 2048;
 int screen_height = 2048;
 
@@ -49,6 +50,10 @@ int main(){
     Shape* layer5 = (Shape*) malloc(100*sizeof(Shape));
     Shape* layer6 = (Shape*) malloc(100*sizeof(Shape));
     Shape* layer7 = (Shape*) malloc(100*sizeof(Shape));
+
+    // TODO: call svg reader here. streamFile returns an array of string
+    // then, call getShapeFromInstructions.
+    // For more information, look at svg_reader/exampleMain.c
     
     int layer1_size;
     int layer2_size;
