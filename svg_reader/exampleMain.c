@@ -29,13 +29,15 @@ int main(){
     memset(fb, 0, SCREEN_SIZE);
     Buffer b = buffer(fb,screen_width, screen_height);
 
-    Shape *listOfShapes = (Shape*) malloc (80*sizeof(Shape));
-    char** itbMap = streamFile("peta_itb.svg");
-
-    for(int i = 0; i < 80 ; i++) {    
+    Shape *listOfShapes = (Shape*) malloc (160*sizeof(Shape));
+    char **layerNameList = (char**) malloc (6 * sizeof(char*)); 
+    char** itbMap = streamFile("peta_itb.svg",layerNameList);
+    printf("finished reading!");
+    for(int i = 0; i < 143 ; i++) {  
+        if (itbMap[i] != NULL) 
         listOfShapes[i] = getShapeFromInstructions(itbMap[i], 3);
     }
-    for(int i = 0; i < 80 ; i++) {
+    for(int i = 0; i < 143 ; i++) {
         Shape_drawTo(&(listOfShapes[i]),&b, point(0,0));
     }
     xmlCleanupParser();
