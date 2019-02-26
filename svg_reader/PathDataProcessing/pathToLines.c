@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-const int MAX_VERTICES = 40;
+const int MAX_VERTICES = 140;
 
 const char SET_INIT_POINT = 'm';
 const char LINE_TO = 'l';
@@ -69,6 +69,7 @@ Shape getShapeFromInstructions(char* inst, float scale) {
     Line *lines = constructLines(points, scale, iInst);
     free(instructions);
     free(numericValues);
+    free(points);
     return shape(lines, iInst, &shapeColor);
 }
 
@@ -106,7 +107,7 @@ char* getInstructions(char* inst) {
  * but is not parsed here. 
  */
 char** parseNumericValues(char* inst) {
-    int MAX_NUM_LENGTH = 50;
+    int MAX_NUM_LENGTH = 120;
     char **result = (char**) malloc(MAX_VERTICES*sizeof(char*));
     int nNumbers = 0;
     int charIterator = 0;
@@ -200,7 +201,7 @@ char** splitPoint (char* value) {
     int j = 0;
     int i = 0;
     int len1 = 0;
-    result[0] = initializeString(20);
+    result[0] = initializeString(60);
     while(value[len1+j] != '\0') {
         
         result[i][j] = value[len1+j];
@@ -210,7 +211,7 @@ char** splitPoint (char* value) {
             result[i][j] = '\0';
             i++;
             j = 0;
-            result[i] = initializeString(20);
+            result[i] = initializeString(60);
         }
     }
 
