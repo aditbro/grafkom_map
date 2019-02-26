@@ -1,8 +1,9 @@
 #ifndef PATH_TO_LINES_H
 #define PATH_TO_LINES_H
-#include "Line/Line.h"
-#include "Point/Point.h"
-#include "Shape/Shape.h"
+// #include "Line/Line.h"
+// #include "Point/Point.h"
+// #include "Shape/Shape.h"
+#include "../../data_structures.h"
 
 
 /**

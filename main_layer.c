@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include "kbhit.c"
+#include "svglibs.h"
 
 // DO NOT FORGET TO CHANGE THIS!
 int screen_width = 2048;
@@ -49,19 +50,59 @@ int main(){
     Shape* layer4 = (Shape*) malloc(100*sizeof(Shape));
     Shape* layer5 = (Shape*) malloc(100*sizeof(Shape));
     Shape* layer6 = (Shape*) malloc(100*sizeof(Shape));
-    Shape* layer7 = (Shape*) malloc(100*sizeof(Shape));
 
     // TODO: call svg reader here. streamFile returns an array of string
     // then, call getShapeFromInstructions.
     // For more information, look at svg_reader/exampleMain.c
     
-    int layer1_size;
-    int layer2_size;
-    int layer3_size;
-    int layer4_size;
-    int layer5_size;
-    int layer6_size;
-    int layer7_size;
+    int layer1_size = 0;
+    int layer2_size = 0;
+    int layer3_size = 0;
+    int layer4_size = 0;
+    int layer5_size = 0;
+    int layer6_size = 0;
+
+    // flag for layer switch
+    int null_count = 0;
+    int peta_shape_index = 0;
+    int layer_shape_index = 0;
+    char** layer_names = (char**) malloc (6 * sizeof(char*)); 
+    char** peta_itb = streamFile("svg_reader/peta_itb.svg", layer_names);
+
+    while (null_count < 6) {
+        if (peta_itb[peta_shape_index] != NULL) {
+            if (null_count == 0) {
+                layer1[layer_shape_index] = getShapeFromInstructions(peta_itb[peta_shape_index], 3);
+                layer1_size++;
+            }
+            else if (null_count == 1) {
+                layer2[layer_shape_index] = getShapeFromInstructions(peta_itb[peta_shape_index], 3);
+                layer2_size++;
+            }
+            else if (null_count == 2) {
+                layer3[layer_shape_index] = getShapeFromInstructions(peta_itb[peta_shape_index], 3);
+                layer3_size++;
+            }
+            else if (null_count == 3) {
+                layer4[layer_shape_index] = getShapeFromInstructions(peta_itb[peta_shape_index], 3);
+                layer4_size++;
+            }
+            else if (null_count == 4) {
+                layer5[layer_shape_index] = getShapeFromInstructions(peta_itb[peta_shape_index], 3);
+                layer5_size++;
+            }
+            else if (null_count == 5) {
+                layer6[layer_shape_index] = getShapeFromInstructions(peta_itb[peta_shape_index], 3);
+                layer6_size++;
+            }
+            layer_shape_index++;
+        }
+        else {
+            null_count++;
+            layer_shape_index = 0;
+        }
+        peta_shape_index++;
+    }
 
     int layer1_stats = 0;
     int layer2_stats = 0;
@@ -69,7 +110,6 @@ int main(){
     int layer4_stats = 0;
     int layer5_stats = 0;
     int layer6_stats = 0;
-    int layer7_stats = 0;
 
     char ch;
     while(1){
@@ -115,12 +155,6 @@ int main(){
                 } else {
                     layer6_stats = 0;
                 }
-            } else if (ch == '7') {
-                if (!layer7_stats) {
-                    layer7_stats = 1;
-                } else {
-                    layer7_stats = 0;
-                }
             }
         }
 
@@ -136,8 +170,6 @@ int main(){
             renderLayer(&tb, layer5, layer5_size);
         } else if (layer6_stats) {
             renderLayer(&tb, layer6, layer6_size);
-        } else if (layer7_stats) {
-            renderLayer(&tb, layer7, layer7_size);
         }
 
         memcpy((fb.buffer), (tb.buffer), SCREEN_SIZE);
