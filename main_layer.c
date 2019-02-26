@@ -11,8 +11,8 @@
 #include "svglibs.h"
 
 // DO NOT FORGET TO CHANGE THIS!
-int screen_width = 2048;
-int screen_height = 2048;
+int screen_width = 1176;
+int screen_height = 800;
 
 Buffer get_image_buffer(char* dir, int width, int height){
     int fb_fd = 0;
@@ -65,7 +65,7 @@ int main(){
     // flag for layer switch
     int null_count = 0;
     int peta_shape_index = 0;
-    int layer_shape_index = 0;
+    int layer_shape_index = 0;  
     char** layer_names = (char**) malloc (6 * sizeof(char*)); 
     char** peta_itb = streamFile("svg_reader/peta_itb.svg", layer_names);
 
@@ -104,12 +104,12 @@ int main(){
         peta_shape_index++;
     }
 
-    int layer1_stats = 0;
-    int layer2_stats = 0;
-    int layer3_stats = 0;
-    int layer4_stats = 0;
-    int layer5_stats = 0;
-    int layer6_stats = 0;
+    int layer1_stats = 1;
+    int layer2_stats = 1;
+    int layer3_stats = 1;
+    int layer4_stats = 1;
+    int layer5_stats = 1;
+    int layer6_stats = 1;
 
     char ch;
     while(1){
@@ -160,15 +160,20 @@ int main(){
 
         if (layer1_stats) {
             renderLayer(&tb, layer1, layer1_size);
-        } else if (layer2_stats) {
+        }
+        if (layer2_stats) {
             renderLayer(&tb, layer2, layer2_size);
-        } else if (layer3_stats) {
+        }
+        if (layer3_stats) {
             renderLayer(&tb, layer3, layer3_size);
-        } else if (layer4_stats) {
+        }
+        if (layer4_stats) {
             renderLayer(&tb, layer4, layer4_size);
-        } else if (layer5_stats) {
+        }
+        if (layer5_stats) {
             renderLayer(&tb, layer5, layer5_size);
-        } else if (layer6_stats) {
+        }
+        if (layer6_stats) {
             renderLayer(&tb, layer6, layer6_size);
         }
 
