@@ -7,5 +7,6 @@
 #include "data_structures/Shape/Shape.h"
 #include "data_structures/Point/Point.h"
 #include "data_structures/Object/Object.h"
+#include "data_structures/Letters/Letters.h"
 
 #endif
