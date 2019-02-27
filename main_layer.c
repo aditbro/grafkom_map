@@ -108,6 +108,7 @@ int main(){
     int layer6_stats = 1;
 
     char ch;
+
     while(1){
         memset(tb.buffer, 0, SCREEN_SIZE);
 
@@ -154,22 +155,36 @@ int main(){
             }
         }
 
+        Color on = color(200, 10, 10);
+
         if (layer1_stats) {
+            Shape s = drawA(0,0,on);
+            Shape_drawTo(&s, &tb, point(10, 700));
             renderLayer(&tb, layer1, layer1_size);
-        }
+        } 
         if (layer2_stats) {
+            Shape s = drawB(0,0,on);
+            Shape_drawTo(&s, &tb, point(60, 700));
             renderLayer(&tb, layer2, layer2_size);
-        }
+        } 
         if (layer3_stats) {
+            Shape s = drawC(0,0,on);
+            Shape_drawTo(&s, &tb, point(110, 700));
             renderLayer(&tb, layer3, layer3_size);
         }
         if (layer4_stats) {
+            Shape s = drawD(0,0,on);
+            Shape_drawTo(&s, &tb, point(160, 700));
             renderLayer(&tb, layer4, layer4_size);
         }
         if (layer5_stats) {
+            Shape s = drawE(0,0,on);
+            Shape_drawTo(&s, &tb, point(210, 700));
             renderLayer(&tb, layer5, layer5_size);
         }
         if (layer6_stats) {
+            Shape s = drawF(0,0,on);
+            Shape_drawTo(&s, &tb, point(260, 700));
             renderLayer(&tb, layer6, layer6_size);
         }
 
