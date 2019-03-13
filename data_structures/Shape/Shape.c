@@ -39,7 +39,7 @@ Shape copy_shape(Shape* sh){
 //draw shape to internal buffer
 void Shape_draw(Shape* sh){
     Shape_draw_wireframe(sh);
-    //Shape_fillColor(sh);
+    // Shape_fillColor(sh);
 }
 
 //get the leftmost, top, bottom, rightmost points and save it to struct
